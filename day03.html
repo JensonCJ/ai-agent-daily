@@ -59,7 +59,15 @@
     .chain-line { stroke: var(--muted); stroke-width: 1.2; }
     .return-line { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; }
     .ret-label { fill: var(--accent); font: 500 11px var(--sans); text-anchor: middle; }
-  </style>
+      @media (max-width: 760px) {
+      body { padding: 1.5rem 1rem 2.5rem; }
+      .meta { gap: 0.6rem; }
+      svg { min-width: 760px; }
+      .svg-wrap { -webkit-overflow-scrolling: touch; }
+      .svg-wrap::after { content: '← 左右滑动看图 →'; display: block; padding-top: 0.35rem; text-align: center; color: var(--soft); font-size: 0.72rem; }
+      table { font-size: 0.82rem; }
+      th, td { padding: 0.5rem 0.55rem; }
+    }</style>
 </head>
 <body>
 <main class="frame">
