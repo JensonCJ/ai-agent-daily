@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Agent HandBook · 每日一章 · 目录与进度</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #f5f5f5; --ink: #2d3142; --muted: #4f5d75; --soft: #7a8399;
+      --accent: #eb6c36; --accent-tint: rgba(235,108,54,0.08); --link: #2e5aa8;
+      --rule: rgba(45,49,66,0.12);
+      --sans: 'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --serif: 'Instrument Serif', 'Noto Serif SC', serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.75; padding: 3rem 2rem 4rem; }
+    .frame { max-width: 1000px; margin: 0 auto; }
+    .eyebrow { color: var(--muted); font: 500 0.66rem var(--mono); letter-spacing: 0.18em; text-transform: uppercase; }
+    h1 { margin: 0.5rem 0 0.75rem; font: 400 clamp(1.6rem, 2.4vw + 0.75rem, 2.1rem)/1.2 var(--serif); letter-spacing: -0.02em; }
+    .meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; color: var(--soft); font: 400 0.68rem var(--mono); letter-spacing: 0.06em; }
+    .lede { margin-bottom: 1.5rem; padding: 1.25rem 1.5rem; border-left: 2px solid var(--accent); background: #ffffff; border-radius: 0 6px 6px 0; font-size: 1.02rem; line-height: 1.7; }
+    .lede b { color: var(--accent); }
+    .bar { height: 6px; margin: 0.75rem 0 2rem; background: rgba(45,49,66,0.08); border-radius: 3px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--accent); }
+    .mech { margin: 0 0 2.5rem; padding: 1.1rem 1.4rem; background: #ffffff; border: 0.8px solid var(--rule); border-radius: 6px; font-size: 0.88rem; line-height: 1.8; }
+    .mech b { color: var(--ink); }
+    .mech code { font-family: var(--mono); font-size: 0.85em; color: var(--muted); background: rgba(45,49,66,0.05); padding: 1px 5px; border-radius: 3px; }
+    h2 { margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 0.8px solid var(--rule); font: 600 1.05rem/1.4 var(--sans); }
+    h2 .num { margin-right: 0.6rem; color: var(--accent); font: 500 0.8rem var(--mono); }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.86rem; background: #ffffff; }
+    th, td { padding: 0.55rem 0.75rem; border-bottom: 0.8px solid var(--rule); text-align: left; vertical-align: top; line-height: 1.6; }
+    thead th { color: var(--muted); font: 600 0.78rem var(--sans); background: rgba(45,49,66,0.03); }
+    tbody tr:last-child td { border-bottom: none; }
+    td.day { font: 500 0.8rem var(--mono); color: var(--muted); white-space: nowrap; width: 58px; }
+    td.ch { white-space: nowrap; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .st { font: 500 0.72rem var(--mono); white-space: nowrap; }
+    .st.done { color: #2e7d4f; }
+    .st.ready { color: var(--accent); }
+    .st.wait { color: var(--soft); }
+    .split { color: var(--soft); font: 500 0.68rem var(--mono); }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 0.8px solid var(--rule); color: var(--soft); font: 400 0.75rem/1.9 var(--sans); }
+  </style>
+</head>
+<body>
+<main class="frame">
+
+  <p class="eyebrow">阿里云《AI Agent HandBook》· 中文图解版</p>
+  <h1>每日一章 · 目录与进度</h1>
+  <p class="meta"><span>共 34 天</span><span>每天 1 页 · 2 张图 · 大白话 + 术语卡</span><span>上午 9:00 自动送达</span></p>
+
+  <div class="lede">
+    一天读一章，每页两张图：<b>一张讲结构，一张讲关系</b>；术语全部翻成人话；最后加一节「跟我工作有什么关系」和 3 个自检问题。长章节（第 2、3、30 章）拆成上下两天。
+  </div>
+
+  <div class="bar"><i style="width:8.8%"></i></div>
+
+  <div class="mech">
+    <b>推送方式：</b>每天 <b>09:00</b> 飞书收到一张卡片——一句话结论 + 3 个要点 + 跟我工作的关系，卡片底部是当天页面的链接，<b>手机上点开就是完整图文</b>。电脑不再弹窗。<br>
+    <b>兜底：</b>9 点没触发的话，<b>12:30</b> 和下次登录时会自动补推，一天只推一次。<br>
+    <b>已生成 3 / 34 天</b>，保持领先 2–3 天。
+  </div>
+
+  <h2><span class="num">01</span>正文 30 章</h2>
+  <table>
+    <thead><tr><th>Day</th><th>章节</th><th>一句话看点</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="day">01</td><td class="ch"><a href="day01.html">第 1 章 · AI 原生应用的新阶段</a></td><td>Agent = Model + Harness；形态共存而非替代；L1–L4 能力级别。</td><td class="st done">已推送</td></tr>
+      <tr><td class="day">02</td><td class="ch"><a href="day02.html">第 2 章（上）· 参考架构的三个视图</a> <span class="split">拆两天</span></td><td>组件视图防遗漏、平台视图防责任混乱、生命周期视图防把演示当系统。</td><td class="st ready">已生成</td></tr>
+      <tr><td class="day">03</td><td class="ch"><a href="day03.html">第 2 章（下）· Agent Release 与生命周期闭环</a> <span class="split">拆两天</span></td><td>一次发布要绑定六类要素；调优产物不能绕过构建门禁直接进生产。</td><td class="st ready">已生成</td></tr>
+      <tr><td class="day">04</td><td class="ch">第 3 章（上）· 四条构建路径 <span class="split">拆两天</span></td><td>自研 Harness / 用产品化 Harness / 托管智能体 / 云产品，四条路不是成熟度阶梯。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">05</td><td class="ch">第 3 章（下）· 责任边界与 Agent Platform <span class="split">拆两天</span></td><td>Harness 决定单个智能体怎么干活，平台决定一群智能体怎么被创建、运行和治理。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">06</td><td class="ch">第 4 章 · 任务：编排、长程推进与协作流转</td><td>任务状态机、计划、阶段门禁，以及「什么算做完了」的完成证据。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">07</td><td class="ch">第 5 章 · 信息：上下文、状态与可复用能力资产</td><td>上下文 ≠ 状态；压缩、卸载、记忆、Skill 各管一段。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">08</td><td class="ch">第 6 章 · 行动：受控执行、验证反馈与交付准备</td><td>一次受控行动要过六道关；能力被发现不等于被授权。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">09</td><td class="ch">第 7 章 · Agent 运行时与沙箱</td><td>任务跑在哪、隔离到什么程度、环境怎么创建与回收。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">10</td><td class="ch">第 8 章 · Agent 状态存储与语义资产</td><td>事件日志、检查点、工作区快照、长期记忆，各自的一致性要求不同。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">11</td><td class="ch">第 9 章 · AI 网关与统一流量治理</td><td>模型、工具、任务三类流量的身份、权限、预算、路由与审计。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">12</td><td class="ch">第 10 章 · Agent 异步任务与自动化流程</td><td>同步与异步的边界、任务完成语义、定时与长时任务。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">13</td><td class="ch">第 11 章 · Multi-Agent 协作与编排</td><td>异构智能体接入、团队拓扑、任务分派、结果聚合与编排职责。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">14</td><td class="ch">第 12 章 · Agent 分布式通信</td><td>能力面、协作面、内构面、人机面四类通信与消息治理。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">15</td><td class="ch">第 13 章 · Agent 的可观测性</td><td>指标、日志、Trace、成本归因与审计怎么建。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">16</td><td class="ch">第 14 章 · Agent 安全</td><td>提示词注入、身份鉴权、逐次校验、高危授权、数据出域防护。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">17</td><td class="ch">第 15 章 · AI 资产的发现与管理</td><td>提示词、Skill、MCP、Agent 的注册、版本、发现与发布管理。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">18</td><td class="ch">第 16 章 · Agent 行为生成与质量验证</td><td>上线前的仿真：模拟用户、模拟环境、配置场景。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">19</td><td class="ch">第 17 章 · 模型调优</td><td>什么时候该动模型；SFT、Agentic RL、蒸馏与上线验收。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">20</td><td class="ch">第 18 章 · Agent 调优总览</td><td>调优对象、方法边界与数据飞轮全景。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">21</td><td class="ch">第 19 章 · Agent 轨迹数据</td><td>从 Trace 到 Trajectory：把执行过程变成可复用的行为证据。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">22</td><td class="ch">第 20 章 · Agent 运行时数据处理</td><td>运行数据的采集、清洗、加工与声明式数据流水线。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">23</td><td class="ch">第 21 章 · Agent 黄金数据集</td><td>输入、轨迹、结果、判据四件套，评估才有基准。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">24</td><td class="ch">第 22 章 · Agent 优化：Badcase</td><td>坏例的发现、归因、修复、回归与实验验证。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">25</td><td class="ch">第 23 章 · 受控自进化</td><td>把有效经验沉淀为记忆、Skill、工具，同时控制自进化风险。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">26</td><td class="ch">第 24 章 · Agent 边缘运行时与全球优化</td><td>边缘运行、边缘评估、性能成本、内容分发与安全仿真。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">27</td><td class="ch">第 25 章 · 研发效能（实践案例）</td><td>代码审查、缺陷检测、补丁交付、端到端研发协作的真实做法。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">28</td><td class="ch">第 26 章 · 设计工程（实践案例）</td><td>Vibe Designing 与 GenUI：从给出答案走向交付结果。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">29</td><td class="ch">第 27 章 · 运维、安全与企业 IT（实践案例）</td><td>汽车、连锁零售与企业软件的大规模智能运维实践。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">30</td><td class="ch">第 28 章 · 客户、销售与运营（实践案例）</td><td>长周期记忆、内容洞察、办公提效与 Data Agent 实践。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">31</td><td class="ch">第 29 章 · GOAI Agent Infra 赛道</td><td>大赛优秀作品：多智能体协同的前沿探索。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">32</td><td class="ch">第 30 章（上）· 从 Agentic Application 到 Agentic OS <span class="split">拆两天</span></td><td>九类核心管理对象与三条下沉判据：复用性、强制性、可验证性。</td><td class="st wait">待生成</td></tr>
+      <tr><td class="day">33</td><td class="ch">第 30 章（下）· 强制边界与开放问题 <span class="split">拆两天</span></td><td>「能观测到」不等于「能控制住」；七个还没有公认答案的问题。</td><td class="st wait">待生成</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">02</span>附录</h2>
+  <table>
+    <tbody>
+      <tr><td class="day">34</td><td class="ch">附录 · 2026 Agent 开发者调研报告</td><td>1906 份问卷：18% 上生产、63% 要路由降级、55% 靠人工抽查。</td><td class="st wait">待生成</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">03</span>推送配置说明</h2>
+  <div class="mech">
+    本目录自带一个本地推送脚本 <code>push-day.ps1</code>（由 Windows 计划任务 <code>DailyHandbookPush</code> 在 09:00 / 12:30 / 登录时触发）。它做三件事：<br>
+    ① 按 <code>plan.json</code> 的日程算出今天该看第几天；② 把当天的「今日速览」作为飞书卡片推给你，卡片底部附本站页面链接；③ 写日志。<br><br>
+    <b>电脑弹窗已关闭</b>：<code>plan.json</code> 里 <code>"openInBrowser"</code> 和 <code>"notify"</code> 都是 <code>false</code>，不再自动开浏览器、不再弹系统通知；想恢复就改成 <code>true</code>。<br>
+    <b>飞书已开通</b>：Webhook 已写入 <code>plan.json</code>；想换群就换成新机器人的地址即可，保存后下一次触发生效。<br>
+    <b>手机看图文：</b>页面发布在 GitHub Pages 上，地址写在 <code>plan.json</code> 的 <code>"pageUrlBase"</code>；卡片会自动拼上当天文件名。<br>
+    <b>改时间：</b>改 <code>plan.json</code> 的 <code>"time"</code> / <code>"catchUpTime"</code>，然后重新运行 <code>install-task.ps1</code>。<br>
+    <b>查记录：</b>每次运行都写进 <code>push-log.txt</code>；<code>.last-push</code> 记录最后推送日期，保证一天只推一次。<br>
+    <b>换周期：</b><code>plan.json</code> 的 <code>"strideDays"</code> 改成 2，就变成两天一章。
+  </div>
+
+  <footer>
+    原文仓库：<a href="https://github.com/aliyun/ai-agent-handbook">github.com/aliyun/ai-agent-handbook</a>（Apache License 2.0）<br>
+    本站 34 天页面是对原文的中文解读、删改与重新编排，非原文翻译；所有图解为自绘。<br>
+    依 Apache License 2.0 第 4 条：保留上述署名，并声明本作品对原作品做了修改与重新组织；原作品版权归阿里云及原文贡献者所有。
+  </footer>
+
+</main>
+</body>
+</html>

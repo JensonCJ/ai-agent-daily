@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>第 2 章（上）· 参考架构的三个视图</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600&amp;family=Noto+Serif+SC:wght@400&amp;display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #f5f5f5; --ink: #2d3142; --muted: #4f5d75; --soft: #7a8399;
+      --accent: #eb6c36; --accent-tint: rgba(235,108,54,0.08); --link: #2e5aa8;
+      --rule: rgba(45,49,66,0.12);
+      --sans: 'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --serif: 'Instrument Serif', 'Noto Serif SC', serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.75; padding: 3rem 2rem 4rem; }
+    .frame { max-width: 1000px; margin: 0 auto; }
+    .eyebrow { color: var(--muted); font: 500 0.66rem var(--mono); letter-spacing: 0.18em; text-transform: uppercase; }
+    h1 { margin: 0.5rem 0 0.75rem; font: 400 clamp(1.6rem, 2.4vw + 0.75rem, 2.1rem)/1.2 var(--serif); letter-spacing: -0.02em; }
+    .meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; color: var(--soft); font: 400 0.68rem var(--mono); letter-spacing: 0.06em; }
+    .lede { margin-bottom: 2.5rem; padding: 1.25rem 1.5rem; border-left: 2px solid var(--accent); background: #ffffff; border-radius: 0 6px 6px 0; font-size: 1.05rem; line-height: 1.7; }
+    .lede b { color: var(--accent); }
+    h2 { margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 0.8px solid var(--rule); font: 600 1.05rem/1.4 var(--sans); }
+    h2 .num { margin-right: 0.6rem; color: var(--accent); font: 500 0.8rem var(--mono); }
+    h3 { margin: 1.5rem 0 0.5rem; font: 600 0.95rem/1.5 var(--sans); }
+    p { margin-bottom: 0.9rem; }
+    ul, ol { margin: 0 0 1rem 1.2rem; }
+    li { margin-bottom: 0.5rem; }
+    code, .en { font-family: var(--mono); font-size: 0.8em; color: var(--muted); background: rgba(45,49,66,0.05); padding: 1px 5px; border-radius: 3px; }
+    .svg-wrap { margin: 1.5rem 0 0.5rem; overflow-x: auto; }
+    svg { display: block; width: 100%; min-width: 900px; }
+    .caption { margin-bottom: 2rem; color: var(--soft); font: 400 0.75rem/1.6 var(--sans); }
+    .figlabel { margin: 1.5rem 0 0.25rem; color: var(--muted); font: 600 0.9rem var(--sans); }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.86rem; background: #ffffff; }
+    th, td { padding: 0.6rem 0.75rem; border-bottom: 0.8px solid var(--rule); text-align: left; vertical-align: top; line-height: 1.6; }
+    thead th { color: var(--muted); font: 600 0.78rem var(--sans); background: rgba(45,49,66,0.03); }
+    tbody tr:last-child td { border-bottom: none; }
+    .term-en { font-family: var(--mono); font-size: 0.86em; color: var(--ink); white-space: nowrap; }
+    .term-cn { color: var(--muted); white-space: nowrap; }
+    .check li { margin-bottom: 0.75rem; }
+    .tag { display: inline-block; margin-right: 0.4rem; padding: 1px 6px; border: 0.8px solid var(--rule); border-radius: 3px; color: var(--soft); font: 500 0.62rem var(--mono); letter-spacing: 0.08em; vertical-align: 1px; }
+    .work { margin: 1rem 0 1.5rem; padding: 1.25rem 1.5rem; background: #ffffff; border: 0.8px solid var(--rule); border-radius: 6px; }
+    .work h3 { margin-top: 1.1rem; }
+    .work h3:first-child { margin-top: 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 0.8px solid var(--rule); color: var(--soft); font: 400 0.75rem/1.9 var(--sans); }
+    footer a { color: var(--link); text-decoration: none; }
+    .svg-card { fill: #ffffff; stroke: #2d3142; stroke-width: 1; }
+    .svg-card-title { fill: var(--ink); font: 600 16px var(--sans); text-anchor: middle; }
+    .svg-card-latin { fill: var(--soft); font: 500 9px var(--mono); letter-spacing: 0.08em; text-anchor: middle; }
+    .svg-card-line { fill: var(--muted); font: 400 12px var(--sans); text-anchor: middle; }
+    .svg-eyebrow { fill: var(--soft); font: 500 8px var(--mono); letter-spacing: 0.14em; }
+    .svg-hair { stroke: var(--rule); stroke-width: 0.8; }
+    .svg-tag { fill: var(--soft); font: 500 9px var(--mono); letter-spacing: 0.08em; }
+    .svg-title { fill: var(--ink); font: 600 16px var(--sans); }
+    .svg-desc { fill: var(--muted); font: 400 12px var(--sans); }
+    .svg-comp { fill: var(--soft); font: 400 9px var(--mono); text-anchor: end; }
+    .svg-band { fill: #ffffff; stroke: var(--rule); stroke-width: 1; }
+    .svg-band.focal { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.2; }
+    .svg-legend { fill: var(--muted); font: 500 12px var(--sans); }
+    .return-line { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; }
+    .ret-label { fill: var(--accent); font: 500 12px var(--sans); text-anchor: middle; }
+    .brace { fill: none; stroke: var(--muted); stroke-width: 1; }
+    .brace-label { fill: var(--ink); font: 500 12px var(--sans); }
+  </style>
+</head>
+<body>
+<main class="frame">
+
+  <p class="eyebrow">白皮书每日一章 · Day 02 / 34 · 阿里云《AI Agent HandBook》</p>
+  <h1>第 2 章（上）· 参考架构的三个视图</h1>
+  <p class="meta"><span>本页约 8 分钟</span><span>2 张图 · 5 条原则 · 12 个术语</span><span>格式 v2</span></p>
+
+  <div class="lede">
+    上一章说 Agent = Model + Harness。这一章解决一个非常实际的问题：<b>这套系统该怎么描述、责任该记在谁头上。</b>答案是——用三个互相不能替代的视图看同一个系统，再把能力划进五个责任域。
+  </div>
+
+  <h2><span class="num">01</span>为什么要三个视图：一个视图解决一类翻车</h2>
+  <p>书里的原话是：架构设计的难点不在「列出尽可能多的组件」，而在<b>划分责任边界</b>。它举了四个会在规模化之后集中爆发的边界问题：</p>
+  <ul>
+    <li><b>Model 和 Harness 边界不清</b> → 模型一升级，应用就得重写；</li>
+    <li><b>编排逻辑和运行底座（Runtime）不分</b> → 任务语义和基础设施绑死，换底座等于重做；</li>
+    <li><b>上下文（Context）和状态（State）不分</b> → 把「不完整的对话历史」当成「可恢复的任务事实」；</li>
+    <li><b>沙箱、权限、工具描述混在一起</b> → 把「模型知道某个工具」误解成「模型有权执行这个操作」。</li>
+  </ul>
+  <p>这四个问题在演示阶段都不会暴露，任务一变长、工具一变多、租户一变多就集体冒出来。所以要三个视图分别盯着不同的风险。</p>
+
+  <p class="figlabel">图 1 · 同一套系统，三种问法，三类事故</p>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1000 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ch2a-title ch2a-desc">
+      <title id="ch2a-title">参考架构的三个正交视图</title>
+      <desc id="ch2a-desc">三栏图分别说明组件视图回答系统由什么组成并防止能力遗漏，平台视图回答组件在哪运行由谁负责并防止责任混乱，生命周期视图回答系统如何从架构决策走到运行并被治理改进，防止把一次性演示当成可运营系统。</desc>
+      <defs>
+        <marker id="ch2a-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="ch2a-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="ch2a-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+      <rect width="1000" height="336" fill="#f5f5f5"/>
+      <text x="120" y="88" class="svg-eyebrow">THREE ORTHOGONAL VIEWS · ONE SYSTEM</text>
+
+      <rect class="svg-card" x="120" y="120" width="240" height="152" rx="6"/>
+      <text x="240" y="156" class="svg-card-title">组件视图</text>
+      <text x="240" y="174" class="svg-card-latin">COMPONENT</text>
+      <line class="svg-hair" x1="136" y1="186" x2="344" y2="186"/>
+      <text x="240" y="212" class="svg-card-line">问：系统由什么组成</text>
+      <text x="240" y="234" class="svg-card-line">防：能力遗漏</text>
+      <text x="240" y="256" class="svg-card-line">例：上下文管理不是实现细节</text>
+
+      <rect class="svg-card" x="380" y="120" width="240" height="152" rx="6"/>
+      <text x="500" y="156" class="svg-card-title">平台视图</text>
+      <text x="500" y="174" class="svg-card-latin">PLATFORM</text>
+      <line class="svg-hair" x1="396" y1="186" x2="604" y2="186"/>
+      <text x="500" y="212" class="svg-card-line">问：在哪跑、谁负责</text>
+      <text x="500" y="234" class="svg-card-line">防：责任混乱</text>
+      <text x="500" y="256" class="svg-card-line">例：谁建、谁运维、谁审计</text>
+
+      <rect class="svg-card" x="640" y="120" width="240" height="152" rx="6"/>
+      <text x="760" y="156" class="svg-card-title">生命周期视图</text>
+      <text x="760" y="174" class="svg-card-latin">LIFECYCLE</text>
+      <line class="svg-hair" x1="656" y1="186" x2="864" y2="186"/>
+      <text x="760" y="212" class="svg-card-line">问：怎么从决策走到运行</text>
+      <text x="760" y="234" class="svg-card-line">防：把演示当系统</text>
+      <text x="760" y="256" class="svg-card-line">例：变更能否被复核和回滚</text>
+    </svg>
+  </div>
+  <p class="caption">三者不能互相推导：<b>组件齐全 ≠ 责任清晰，责任清晰 ≠ 变更可控。</b>所以讨论某个能力时，先问一句「我们现在说的是哪个视图」。</p>
+
+  <p>书里给了一个特别好用的例子——同一个「状态存储」（State Store），在三个视图里是三个不同的东西：</p>
+  <table>
+    <thead><tr><th style="width:22%">视图</th><th style="width:34%">这个能力是什么</th><th>为什么必须这么看</th></tr></thead>
+    <tbody>
+      <tr><td>组件视图</td><td>任务事实的持久化能力</td><td>不落库，任务就没法断点续跑</td></tr>
+      <tr><td>平台视图</td><td>属于「数据与资源面」，通常由共享平台提供</td><td>决定它是自建还是平台供给，成本和治理强度完全不同</td></tr>
+      <tr><td>生命周期视图</td><td>运行阶段产生、调优阶段反复读取的证据来源</td><td>没有它，就没有可复现的评估，改版也证明不了变好</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">02</span>五个责任域：能力划到谁头上</h2>
+  <p>下面这张图是全书使用频率最高的一张：五个能力责任域。注意书里特别说明了一句——<b>这里的「层」只是组织责任，不代表严格的调用栈，也不代表建设顺序。</b></p>
+
+  <p class="figlabel">图 2 · 五个能力责任域，以及「变更必须回流构建」这条硬约束</p>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ch2b-title ch2b-desc">
+      <title id="ch2b-title">参考架构的五个能力责任域</title>
+      <desc id="ch2b-desc">分层图自下而上列出业务与应用层、Agent 构建与编排层、生产运行层、治理与控制层、调优层五个责任域；Agent 构建与编排层标为焦点，右侧括号标出模型之外的广义 Harness 范围，左侧虚线箭头表示调优层的候选变更回流构建层，不能直接进入生产。</desc>
+      <defs>
+        <marker id="ch2b-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="ch2b-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="ch2b-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+      <rect width="1000" height="480" fill="#f5f5f5"/>
+
+      <path class="return-line" d="M120 380 H96 A8 8 0 0 1 88 372 V148 A8 8 0 0 1 96 140 H120" marker-end="url(#ch2b-arrow-accent)"/>
+      <rect x="32" y="252" width="48" height="16" rx="4" fill="#f5f5f5"/>
+      <text x="56" y="264" class="ret-label">变更回流</text>
+
+      <rect class="svg-band" x="120" y="24" width="760" height="72" rx="6"/>
+      <text x="136" y="54" class="svg-tag">APP</text>
+      <text x="200" y="56" class="svg-title">业务与应用层</text>
+      <text x="200" y="78" class="svg-desc">定义目标、任务形态与验收条件</text>
+      <text x="864" y="64" class="svg-comp">Workflow · Single-Agent · Long-Horizon · Multi-Agent</text>
+
+      <rect class="svg-band focal" x="120" y="104" width="760" height="72" rx="6"/>
+      <text x="136" y="134" class="svg-tag">CORE</text>
+      <text x="200" y="136" class="svg-title">Agent 构建与编排层</text>
+      <text x="200" y="158" class="svg-desc">决定模型看到什么、能调用什么、何时停止</text>
+      <text x="864" y="144" class="svg-comp">Loop · Context · State · Memory · Skill · Tool</text>
+
+      <rect class="svg-band" x="120" y="184" width="760" height="72" rx="6"/>
+      <text x="136" y="214" class="svg-tag">RUNTIME</text>
+      <text x="200" y="216" class="svg-title">生产运行层</text>
+      <text x="200" y="238" class="svg-desc">承载跨请求的长任务：调度、隔离、恢复</text>
+      <text x="864" y="224" class="svg-comp">Runtime · Sandbox · Workspace · State Store · Gateway</text>
+
+      <rect class="svg-band" x="120" y="264" width="760" height="72" rx="6"/>
+      <text x="136" y="294" class="svg-tag">CONTROL</text>
+      <text x="200" y="296" class="svg-title">治理与控制层</text>
+      <text x="200" y="318" class="svg-desc">回答哪些版本和动作被允许发生</text>
+      <text x="864" y="304" class="svg-comp">Identity · Policy · Approval · Audit</text>
+
+      <rect class="svg-band" x="120" y="344" width="760" height="72" rx="6"/>
+      <text x="136" y="374" class="svg-tag">TUNE</text>
+      <text x="200" y="376" class="svg-title">调优层</text>
+      <text x="200" y="398" class="svg-desc">从生产证据生成候选变更，经构建门禁</text>
+      <text x="864" y="384" class="svg-comp">Trace · Trajectory · Dataset · Evaluator · Patch</text>
+
+      <path class="brace" d="M888 112 V408 M876 112 H888 M876 408 H888"/>
+      <text x="896" y="264" class="brace-label">广义 HARNESS</text>
+
+      <line class="svg-hair" x1="120" y1="432" x2="880" y2="432"/>
+      <rect x="120" y="442" width="16" height="12" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="144" y="452" class="svg-legend">责任域</text>
+      <rect x="212" y="442" width="16" height="12" rx="2" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+      <text x="236" y="452" class="svg-legend">焦点：Harness 编排层</text>
+      <line x1="392" y1="448" x2="410" y2="448" stroke="#eb6c36" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ch2b-arrow-accent)"/>
+      <text x="416" y="452" class="svg-legend">变更回流：经构建门禁</text>
+      <path d="M576 442 v12 M568 442 h8 M568 454 h8" fill="none" stroke="#4f5d75" stroke-width="1"/>
+      <text x="592" y="452" class="svg-legend">广义 Harness 范围</text>
+    </svg>
+  </div>
+  <p class="caption">注意最后一行「调优层」：它<b>不直接修改生产</b>，只产出候选变更（Patch），必须回到构建层形成新版本、过完门禁才允许上线。</p>
+
+  <table>
+    <thead><tr><th style="width:24%">责任域</th><th>它回答的问题（书里的原话）</th></tr></thead>
+    <tbody>
+      <tr><td>业务与应用层</td><td>系统为什么存在、要完成什么、什么结果可以被业务接受。不实现通用智能体能力。</td></tr>
+      <tr><td>Agent 构建与编排层</td><td>把模型、编排逻辑、上下文策略、记忆、知识、Skill 和工具组合成「能观察、判断、行动、接受反馈」的任务循环。它只描述和绑定能力，真正的执行由下一层承担。</td></tr>
+      <tr><td>生产运行层</td><td>承载跨时间、跨请求的任务：调度、状态持久化、工作区、隔离、恢复、流量治理和资源管理。</td></tr>
+      <tr><td>治理与控制层</td><td>谁可以发布、运行和修改 Agent，哪些资源能被访问，版本如何流转，策略如何下发、执行和审计。</td></tr>
+      <tr><td>调优层</td><td>从运行中获得轨迹、指标、日志、成本和反馈，通过评估与实验定位问题，形成候选变更与验证证据。</td></tr>
+    </tbody>
+  </table>
+  <p>而<b>安全（Security）不属于任何单独一层</b>，它横跨五层：业务层定风险边界，构建层实现约束和验证，运行层提供隔离，治理层定义身份策略审计，调优层用红队和仿真验证这些措施是否真的有效。</p>
+
+  <h2><span class="num">03</span>五条设计原则（拿来就能当评审清单）</h2>
+  <ol>
+    <li><b>Model 与 Harness 解耦。</b>模型是可替换的认知核心，Harness 与任务、环境、组织绑定。模型升级可能会让某些补偿性的提示词或循环控制失效，所以两者要一起评估，但实现上不能绑死。</li>
+    <li><b>编排层与 Runtime 解耦。</b>编排层定义「怎么思考和行动」，Runtime 定义「在什么资源和故障条件下持续运行」。分开才能在不重写任务逻辑的前提下换运行底座。</li>
+    <li><b>状态外置，执行实例可替换。</b>会话、计划、待办、工具结果、工作区、记忆、制品都不能只存在模型上下文或某台机器的内存里。</li>
+    <li><b>自主性必须与权限、可验证性匹配。</b>给出的工具、网络、数据、凭证越多，<span class="en">Blast Radius</span>（影响半径，出错时能波及多大范围）越大。要靠最小权限、短期凭证、出站控制、沙箱隔离和审批共同建立边界。</li>
+    <li><b>可观测、安全、评估是运行前提，不是上线补丁。</b>不记录轨迹和环境结果，既无法定位问题，也无法复现评估、证明版本改进。</li>
+  </ol>
+  <p>这五条有个共同点：<b>凡是被授予的自主性，都必须有与之匹配的边界、证据和验证手段；暂时不需要的能力可以不建，但要写清楚什么条件下必须补齐。</b></p>
+
+  <h2><span class="num">04</span>跟我工作有什么关系</h2>
+  <div class="work">
+    <h3>① 三个视图就是一份现成的评审清单</h3>
+    <p>下次评审别人的 Agent 方案，按顺序问三句：<b>组件齐不齐</b>（上下文、状态、验证有没有被当成实现细节）？<b>责任清不清</b>（这块是应用团队做还是平台做）？<b>变更可控不可控</b>（改了 Prompt 或模型，怎么证明没变差、怎么回滚）？三个问题里有一个答不上来，方案就不该进开发。</p>
+
+    <h3>② 前端最容易踩的坑：把 State 放在页面里</h3>
+    <p>原则三「状态外置」对做页面的人最直接：<b>任务状态、待办、已完成的步骤不能只活在浏览器内存或对话历史里</b>，否则刷新一下、换个标签页，任务就"失忆"了。正确做法是后端存任务事实，前端只做「订阅 + 渲染 + 发起中断/接管」。</p>
+
+    <h3>③ 别把编排逻辑写进业务页面</h3>
+    <p>业务与应用层和构建编排层的边界，落到代码上就是：<b>「这一步该调用什么、什么时候停」属于编排层；「这个业务场景要什么、什么结果算合格」属于业务层。</b>把 Agent 的步骤判断写死在业务页面的 if-else 里，等模型或工具一换就是大面积返工。</p>
+
+    <h3>④ 一句话模板（写方案时直接用）</h3>
+    <p>「本应用属于业务与应用层，交付 X 结果；编排逻辑放在编排层，通过 <span class="en">Agent Release</span> 版本化发布；任务状态外置在状态存储，运行在受约束的执行环境里；上线前需要过评估门禁。」——这句话里的每一段，对应图 2 里的一行。</p>
+  </div>
+
+  <h2><span class="num">05</span>今日术语卡</h2>
+  <table>
+    <thead><tr><th style="width:30%">英文</th><th style="width:18%">中文</th><th>人话解释</th></tr></thead>
+    <tbody>
+      <tr><td class="term-en">Component / Platform / Lifecycle view</td><td class="term-cn">组件 / 平台 / 生命周期视图</td><td>看同一套系统的三个侧面：由什么组成、在哪跑谁负责、怎么从决策走到运行再被改进</td></tr>
+      <tr><td class="term-en">Execution Plane</td><td class="term-cn">执行面</td><td>真正干活的那部分：任务在哪台机器、哪个容器里跑</td></tr>
+      <tr><td class="term-en">Data &amp; Resource Plane</td><td class="term-cn">数据与资源面</td><td>状态存哪、模型权重和知识库放哪、配额从哪来</td></tr>
+      <tr><td class="term-en">Control Plane</td><td class="term-cn">控制面</td><td>下命令的那部分：身份、策略、版本发布、审计，不直接干业务活</td></tr>
+      <tr><td class="term-en">Runtime</td><td class="term-cn">运行底座</td><td>任务进程怎么起、怎么调度、崩了怎么恢复、并发怎么办</td></tr>
+      <tr><td class="term-en">Blast Radius</td><td class="term-cn">影响半径</td><td>出错时能波及多大范围。给的权限越大，半径越大，需要的边界和证据就越多</td></tr>
+      <tr><td class="term-en">Policy</td><td class="term-cn">策略</td><td>集中管理的规则：谁能发布、哪些资源能访问、什么动作必须审批</td></tr>
+      <tr><td class="term-en">Agent Release</td><td class="term-cn">智能体发布单元</td><td>把模型、Harness 配置、提示词、能力清单、运行配置、评估基线打包在一起做版本</td></tr>
+      <tr><td class="term-en">Trajectory</td><td class="term-cn">执行轨迹（带判据）</td><td>比 Trace 更进一步：不只有执行流水，还有每一步的判断依据和最终结果</td></tr>
+      <tr><td class="term-en">Dataset / Evaluator</td><td class="term-cn">数据集 / 评估器</td><td>Dataset 是固定题目集，Evaluator 是判分规则。两个都有，评估才有意义</td></tr>
+      <tr><td class="term-en">Patch</td><td class="term-cn">候选变更</td><td>调优产出的「建议这么改」，本身不是可上线的版本，必须回到构建层走发布流程</td></tr>
+      <tr><td class="term-en">Gate / Gatekeeping</td><td class="term-cn">门禁</td><td>上线前的硬性关卡：评估不达标、缺证据、没安全结论，就不许发</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">06</span>今日自检 3 问</h2>
+  <ol class="check">
+    <li>你负责的系统，如果别人问「这块归谁管」，你能立刻答出来吗？答不出来，说明责任边界还没划。</li>
+    <li>任务状态现在存在哪里？如果答案是「浏览器内存 / 对话历史 / 某个进程的内存」，那它还不具备断点续跑的能力。</li>
+    <li>最近一次改动（换模型、改提示词、加工具），你能拿出「没变差」的证据吗？拿不出来，就是原则五没落地。</li>
+  </ol>
+
+  <footer>
+    原文：第 2 章 Agentic Application 参考架构 · <a href="https://github.com/aliyun/ai-agent-handbook">github.com/aliyun/ai-agent-handbook</a><br>
+    明日预告：第 2 章（下）—— 什么叫 Agent Release，以及为什么调优产出的变更不能绕过构建门禁直接进生产。
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>第 1 章 · AI 原生应用的新阶段</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+SC:wght@400;500;600&amp;family=Noto+Serif+SC:wght@400&amp;display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #f5f5f5; --ink: #2d3142; --muted: #4f5d75; --soft: #7a8399;
+      --accent: #eb6c36; --accent-tint: rgba(235,108,54,0.08); --link: #2e5aa8;
+      --rule: rgba(45,49,66,0.12);
+      --sans: 'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --serif: 'Instrument Serif', 'Noto Serif SC', serif;
+      --mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.75; padding: 3rem 2rem 4rem; }
+    .frame { max-width: 1000px; margin: 0 auto; }
+    .eyebrow { color: var(--muted); font: 500 0.66rem var(--mono); letter-spacing: 0.18em; text-transform: uppercase; }
+    h1 { margin: 0.5rem 0 0.75rem; font: 400 clamp(1.6rem, 2.4vw + 0.75rem, 2.1rem)/1.2 var(--serif); letter-spacing: -0.02em; }
+    .meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; color: var(--soft); font: 400 0.68rem var(--mono); letter-spacing: 0.06em; }
+    .lede { margin-bottom: 2.5rem; padding: 1.25rem 1.5rem; border-left: 2px solid var(--accent); background: #ffffff; border-radius: 0 6px 6px 0; font-size: 1.05rem; line-height: 1.7; }
+    .lede b { color: var(--accent); }
+    h2 { margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 0.8px solid var(--rule); font: 600 1.05rem/1.4 var(--sans); }
+    h2 .num { margin-right: 0.6rem; color: var(--accent); font: 500 0.8rem var(--mono); }
+    h3 { margin: 1.5rem 0 0.5rem; font: 600 0.95rem/1.5 var(--sans); }
+    p { margin-bottom: 0.9rem; }
+    ul, ol { margin: 0 0 1rem 1.2rem; }
+    li { margin-bottom: 0.5rem; }
+    code, .en { font-family: var(--mono); font-size: 0.8em; color: var(--muted); background: rgba(45,49,66,0.05); padding: 1px 5px; border-radius: 3px; }
+    .svg-wrap { margin: 1.5rem 0 0.5rem; overflow-x: auto; }
+    svg { display: block; width: 100%; min-width: 900px; }
+    .caption { margin-bottom: 2rem; color: var(--soft); font: 400 0.75rem/1.6 var(--sans); }
+    .figlabel { margin: 1.5rem 0 0.25rem; color: var(--muted); font: 600 0.9rem var(--sans); }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.86rem; background: #ffffff; }
+    th, td { padding: 0.6rem 0.75rem; border-bottom: 0.8px solid var(--rule); text-align: left; vertical-align: top; line-height: 1.6; }
+    thead th { color: var(--muted); font: 600 0.78rem var(--sans); background: rgba(45,49,66,0.03); }
+    tbody tr:last-child td { border-bottom: none; }
+    .term-en { font-family: var(--mono); font-size: 0.86em; color: var(--ink); white-space: nowrap; }
+    .term-cn { color: var(--muted); white-space: nowrap; }
+    .check li { margin-bottom: 0.75rem; }
+    .tag { display: inline-block; margin-right: 0.4rem; padding: 1px 6px; border: 0.8px solid var(--rule); border-radius: 3px; color: var(--soft); font: 500 0.62rem var(--mono); letter-spacing: 0.08em; vertical-align: 1px; }
+    .work { margin: 1rem 0 1.5rem; padding: 1.25rem 1.5rem; background: #ffffff; border: 0.8px solid var(--rule); border-radius: 6px; }
+    .work h3 { margin-top: 1.1rem; }
+    .work h3:first-child { margin-top: 0; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 0.8px solid var(--rule); color: var(--soft); font: 400 0.75rem/1.9 var(--sans); }
+    footer a { color: var(--link); text-decoration: none; }
+    .svg-title { fill: var(--ink); font: 600 16px var(--sans); }
+    .svg-desc { fill: var(--muted); font: 400 12px var(--sans); }
+    .svg-tag { fill: var(--soft); font: 500 9px var(--mono); letter-spacing: 0.08em; }
+    .svg-comp { fill: var(--soft); font: 400 9px var(--mono); text-anchor: end; }
+    .svg-band { fill: #ffffff; stroke: var(--rule); stroke-width: 1; }
+    .svg-band.focal { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.2; }
+    .svg-hair { stroke: var(--rule); stroke-width: 0.8; }
+    .svg-legend { fill: var(--muted); font: 500 12px var(--sans); }
+    .zone { fill: rgba(45,49,66,0.02); stroke: rgba(45,49,66,0.10); stroke-width: 0.8; }
+    .zone-label { fill: rgba(45,49,66,0.40); font: 500 7px var(--mono); letter-spacing: 0.14em; text-anchor: middle; }
+    .node { fill: #ffffff; stroke: #2d3142; stroke-width: 1; }
+    .node.focal { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.2; }
+    .node-title { fill: var(--ink); font: 600 16px var(--sans); text-anchor: middle; }
+    .node-title-l { fill: var(--ink); font: 600 16px var(--sans); }
+    .node-sub { fill: var(--muted); font: 400 12px var(--sans); text-anchor: middle; }
+    .node-note { fill: var(--soft); font: 400 12px var(--sans); text-anchor: middle; }
+    .row { fill: rgba(45,49,66,0.03); stroke: rgba(45,49,66,0.10); stroke-width: 0.8; }
+    .row-cn { fill: var(--ink); font: 500 12px var(--sans); }
+    .row-en { fill: var(--soft); font: 400 9px var(--mono); text-anchor: end; }
+    .link-line { stroke: var(--muted); stroke-width: 1.2; }
+    .arrow-label2 { fill: var(--soft); font: 500 12px var(--sans); text-anchor: middle; }
+    .callout-end { fill: var(--ink); font: italic 400 14px var(--serif); text-anchor: end; }
+  </style>
+</head>
+<body>
+<main class="frame">
+
+  <p class="eyebrow">白皮书每日一章 · Day 01 / 34 · 阿里云《AI Agent HandBook》</p>
+  <h1>第 1 章 · AI 原生应用的新阶段</h1>
+  <p class="meta"><span>本页约 8 分钟</span><span>2 张图 · 3 个判断 · 18 个术语</span><span>格式 v2</span></p>
+
+  <div class="lede">
+    大模型正在从「<b>帮你写东西</b>」变成「<b>替你把事做完</b>」。但这一章最重要的一句是：<b>事情能不能做完，主要不取决于模型有多聪明，而取决于模型之外那套工程系统</b>——书中把它叫 <span class="en">Harness</span>（模型之外的工程系统）。
+  </div>
+
+  <h2><span class="num">01</span>这一章在讲什么</h2>
+  <p><b>上一阶段：应用问，模型答。</b>企业把大模型接进业务，通常靠三件事：写提示词、用 <span class="en">RAG</span>（先查企业内部资料，再让模型照着资料回答）、用 <span class="en">Workflow</span>（工作流：步骤和分支在开发时就写死）。这时候模型负责「理解和生成」，<b>怎么一步步走完，是代码说了算</b>，模型交出来的主要是「内容」。</p>
+  <p><b>转折点：模型开始自己走流程。</b>以 <span class="en">Coding Agent</span>（编码智能体：会读代码库、改文件、跑命令和测试的 AI）为代表，模型第一次能长时间自己干活——它自己分步骤、自己调工具、看结果不对再调整，最后交出来的不是一段话，而是<b>能验证的结果</b>（代码改对了、测试过了）。</p>
+  <p><b>于是有了全书的第一个公式：</b><span class="en">Agent</span>（智能体）＝ <span class="en">Model</span>（模型）＋ <span class="en">Harness</span>（模型之外的工程系统）。</p>
+
+  <p class="figlabel">图 1 · Agent 是什么：Model 负责「想」，Harness 负责「能干活」</p>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1000 448" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ch1a-title ch1a-desc">
+      <title id="ch1a-title">Agent 等于模型加模型之外的工程系统</title>
+      <desc id="ch1a-desc">示意图把 Agent 框成一个整体，左边是 Model 模型，负责理解、推理、生成与做判断，但不会自己记事、管权限、验证结果；右边是 Harness 模型之外的工程系统，内部包含上下文与状态、能力接入、运行与隔离、观测评估治理四组能力。</desc>
+      <defs>
+        <marker id="ch1a-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="ch1a-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="ch1a-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+      <rect width="1000" height="448" fill="#f5f5f5"/>
+
+      <!-- 区域 + 区域标签 -->
+      <rect class="zone" x="120" y="56" width="760" height="328" rx="8"/>
+      <rect x="136" y="60" width="64" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="168" y="71" class="zone-label">AGENT</text>
+
+      <!-- 连线画在方框之前；箭头用三角形画，避免被后画的方框盖住 -->
+      <line class="link-line" x1="368" y1="228" x2="432" y2="228"/>
+      <polygon points="360,228 368,224 368,232" fill="#4f5d75"/>
+      <polygon points="440,228 432,224 432,232" fill="#4f5d75"/>
+      <rect x="376" y="204" width="48" height="16" rx="4" fill="#f5f5f5"/>
+      <text x="400" y="216" class="arrow-label2">每轮往返</text>
+
+      <!-- Model -->
+      <rect class="node" x="160" y="168" width="200" height="120" rx="6"/>
+      <text x="260" y="216" class="node-title">Model（模型）</text>
+      <text x="260" y="244" class="node-sub">理解 · 推理 · 生成</text>
+      <text x="260" y="268" class="node-sub">做判断、选工具</text>
+      <text x="260" y="308" class="node-note">它不会自己记事、管权限、验结果</text>
+
+      <!-- Harness -->
+      <rect class="node focal" x="440" y="88" width="400" height="280" rx="6"/>
+      <text x="456" y="116" class="node-title-l">Harness 模型之外的工程系统</text>
+
+      <rect class="row" x="456" y="136" width="368" height="48" rx="4"/>
+      <text x="472" y="164" class="row-cn">上下文与状态</text>
+      <text x="808" y="164" class="row-en">Context · State · Memory</text>
+
+      <rect class="row" x="456" y="192" width="368" height="48" rx="4"/>
+      <text x="472" y="220" class="row-cn">能力接入</text>
+      <text x="808" y="220" class="row-en">Tool · Skill · MCP</text>
+
+      <rect class="row" x="456" y="248" width="368" height="48" rx="4"/>
+      <text x="472" y="276" class="row-cn">运行与隔离</text>
+      <text x="808" y="276" class="row-en">Runtime · Sandbox</text>
+
+      <rect class="row" x="456" y="304" width="368" height="48" rx="4"/>
+      <text x="472" y="332" class="row-cn">观测 · 评估 · 治理</text>
+      <text x="808" y="332" class="row-en">Trace · Eval · Policy</text>
+
+      <!-- 编辑批注 -->
+      <text x="880" y="44" class="callout-end">模型升级解决不了工程问题</text>
+      <path d="M704 50 Q656 62 620 56" fill="none" stroke="rgba(45,49,66,0.40)" stroke-width="1" stroke-dasharray="4,3"/>
+      <circle cx="620" cy="56" r="2" fill="#2d3142"/>
+    </svg>
+  </div>
+  <p class="caption">读法：<b>模型是发动机，Harness 是底盘、变速箱、方向盘和刹车。</b>发动机换新能提速，但车能不能上路、会不会失控，取决于后面这几样。所以「我的 Agent 不听话」这个问题，一半以上的答案在右边那一半。</p>
+
+  <h2><span class="num">02</span>第一个判断：形态是共存的，不是升级打怪</h2>
+  <p>很多人以为 AI 应用会这样升级：问答 → 工作流 → 副驾 → 智能体 → 多智能体，后一个取代前一个。这一章明确反对这个理解：<b>选哪种形态，看的是「任务的确定性」和「出错的风险」，不是新旧。</b></p>
+  <table>
+    <thead>
+      <tr><th style="width:20%">形态</th><th style="width:24%">任务怎么走，谁说了算</th><th style="width:24%">人做什么</th><th>什么时候用它</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="term-en">Chat / RAG</span><br><span class="term-cn">问答 / 检索增强</span></td><td>应用预先定好</td><td>提问、自己判断</td><td>只要内容，不直接改动外部系统</td></tr>
+      <tr><td><span class="term-en">Workflow</span><br><span class="term-cn">工作流</span></td><td>开发时写死，运行时只有少量分支</td><td>设计流程、审批</td><td>路径能穷举、出错代价高</td></tr>
+      <tr><td><span class="term-en">Copilot</span><br><span class="term-cn">副驾</span></td><td>人一步步决定</td><td>驾驶者，并对结果负责</td><td>专业判断难自动化，但局部活可以委托</td></tr>
+      <tr><td><span class="term-en">Single-Agent</span><br><span class="term-cn">单智能体</span></td><td>智能体在运行时决定部分或大部分路径</td><td>定目标、卡审批点、验收</td><td>路径难预知、环境有反馈、结果可验证、任务有边界</td></tr>
+      <tr><td><span class="term-en">Long-Horizon Agent</span><br><span class="term-cn">长程智能体</span></td><td>按长期反馈持续调整</td><td>设检查点、处理例外</td><td>任务要跨会话、要能暂停和恢复</td></tr>
+      <tr><td><span class="term-en">Multi-Agent</span><br><span class="term-cn">多智能体</span></td><td>多个智能体按角色分工、编排</td><td>定角色、权限、协作边界</td><td>单个智能体受时间跨度或角色复杂度限制</td></tr>
+    </tbody>
+  </table>
+  <p>一句话记法：<b>先用够用的、最便宜、风险最小的那一种</b>（书里叫「最低充分架构」）。低风险的知识助手可以永远停在问答形态。</p>
+
+  <h2><span class="num">03</span>第二个判断：L1–L4 是能力级别，不是升级任务</h2>
+
+  <p class="figlabel">图 2 · 四个能力级别：从「帮你写」到「自己跑并持续变好」</p>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ch1b-title ch1b-desc">
+      <title id="ch1b-title">Agentic Application 的四个能力级别 L1 到 L4</title>
+      <desc id="ch1b-desc">分层图列出 L1 辅助生成、L2 受控自动化、L3 智能体执行、L4 规模运营与持续优化的典型应用、核心状态与升级门槛，L3 标为焦点，说明多数团队在此开始遇到成本、权限与失败放大的生产问题。</desc>
+      <defs>
+        <marker id="ch1b-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="ch1b-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="ch1b-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+      <rect width="1000" height="400" fill="#f5f5f5"/>
+
+      <rect class="svg-band" x="120" y="56" width="760" height="64" rx="6"/>
+      <text x="136" y="78" class="svg-tag">L1</text>
+      <text x="200" y="86" class="svg-title">辅助生成</text>
+      <text x="200" y="106" class="svg-desc">任务闭环由人收尾，系统几乎不记执行状态</text>
+      <text x="864" y="90" class="svg-comp">Assisted Generation · Chat · RAG</text>
+
+      <rect class="svg-band" x="120" y="128" width="760" height="64" rx="6"/>
+      <text x="136" y="150" class="svg-tag">L2</text>
+      <text x="200" y="158" class="svg-title">受控自动化</text>
+      <text x="200" y="178" class="svg-desc">流程预定，遇到未知路径和异常适应有限</text>
+      <text x="864" y="162" class="svg-comp">Controlled Automation · Workflow</text>
+
+      <rect class="svg-band focal" x="120" y="200" width="760" height="64" rx="6"/>
+      <text x="136" y="222" class="svg-tag">L3</text>
+      <text x="200" y="230" class="svg-title">智能体执行</text>
+      <text x="200" y="250" class="svg-desc">动态规划、操作环境、持久状态、故障恢复</text>
+      <text x="864" y="234" class="svg-comp">Agentic Execution · Single / Long-Horizon / Multi-Agent</text>
+
+      <rect class="svg-band" x="120" y="272" width="760" height="64" rx="6"/>
+      <text x="136" y="294" class="svg-tag">L4</text>
+      <text x="200" y="302" class="svg-title">规模运营与持续优化</text>
+      <text x="200" y="322" class="svg-desc">多租户运行、策略控制、评估与灰度优化</text>
+      <text x="864" y="306" class="svg-comp">Managed &amp; Optimizing</text>
+
+      <line class="svg-hair" x1="120" y1="360" x2="880" y2="360"/>
+      <rect x="120" y="370" width="16" height="12" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="144" y="380" class="svg-legend">能力级别（不是企业 AI 成熟度）</text>
+      <rect x="520" y="370" width="16" height="12" rx="2" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+      <text x="544" y="380" class="svg-legend">L3 起开始出现生产问题</text>
+    </svg>
+  </div>
+  <p class="caption">L1–L4 判断的是「这个应用的能力形态」，不是「这家企业的 AI 水平」。同一家公司里，知识助手在 L1、研发智能体在 L3，很正常。</p>
+
+  <table>
+    <thead><tr><th style="width:16%">级别</th><th style="width:42%">长什么样</th><th>升级要补什么</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag">L1</span>辅助生成</td><td>问答、检索、基础副驾；人负责把活干完</td><td>可复用的提示词、知识库、最基础的评测</td></tr>
+      <tr><td><span class="tag">L2</span>受控自动化</td><td>工作流，或在工作流里局部用智能体；结果结构化、带审批</td><td>划清「哪些允许它自己决定」，引入 Harness、工具策略、轨迹评估</td></tr>
+      <tr><td><span class="tag">L3</span>智能体执行</td><td>智能体自己持有任务循环：动态规划、操作环境、多步任务、状态持久、失败能恢复</td><td>运行底座（Runtime）、沙箱（Sandbox）、可观测（Observability）、安全（Security）、评估（Evaluation）</td></tr>
+      <tr><td><span class="tag">L4</span>规模运营</td><td>多任务多租户、策略控制、离线＋在线评估、灰度与持续优化</td><td>共享平台、组织知识、标准与自动化，把治理成本降下来</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">04</span>跟我工作有什么关系</h2>
+  <div class="work">
+    <h3>① 最缺的那一半活儿，恰好是普通工程活儿</h3>
+    <p>模型训练、推理优化确实要专门团队；但 Harness 里的绝大多数事情——上下文怎么组织、任务状态存哪、工具怎么注册、权限怎么判、结果怎么验证——<b>是常规的前后端工程</b>。这就是为什么书里反复说「不要把问题都归给模型」：你缺的可能不是更强的模型，而是右边那半张图。</p>
+
+    <h3>② 做企业前端的人，会直接撞上三件事</h3>
+    <ul>
+      <li><b>交互范式变了。</b>从「填表单 → 调接口 → 看结果」变成「定目标 → 看进度 → 中途接管 → 验收」。要设计的是<b>人在哪个节点介入</b>（<span class="en">HITL</span>），而不是在旧页面上再挂一个聊天框。</li>
+      <li><b>进度展示变了。</b>Agent 的「加载中」不是转圈，而是任务状态机：待办 / 执行中 / 等审批 / 失败可恢复。页面上要能看见它跑到哪一步、断了能不能接着跑，这对前端状态管理是实打实的新要求。</li>
+      <li><b>权限审批要有真实落点。</b>书里那句「模型知道某个工具 ≠ 模型有权执行」落到界面上，就是确认页、二次确认、操作留痕、可回滚。用普通输入框伪装审批或上传，就是书里点名批评的「假能力」。</li>
+    </ul>
+
+    <h3>③ 判断一个需求该不该上智能体，问三句话</h3>
+    <p>① 任务的路径能不能提前穷举？<b>能</b> → 用工作流，别上智能体。<b>不能</b> → 继续问。② 出错能不能人工兜底或回滚？<b>不能</b> → 先别上。③ 结果能不能被独立验证（测试、比对、双人复核）？<b>能</b> → 这里是智能体真正的用武之地（书里叫「反馈信号明确、环境边界清晰、错误代价可控」）。</p>
+
+    <h3>④ 汇报时别再说「我们要做多智能体」</h3>
+    <p>换成这句：<b>「这个任务的路径不可预知、环境有反馈、结果可验证，所以需要 L3 的智能体执行能力，配套要补运行底座、权限控制和评估。」</b>——同一件事，但这句里每一项都能验收，也直接对应书里的「最低充分架构」。</p>
+  </div>
+
+  <h2><span class="num">05</span>今日术语卡</h2>
+  <table>
+    <thead><tr><th style="width:30%">英文</th><th style="width:18%">中文</th><th>人话解释</th></tr></thead>
+    <tbody>
+      <tr><td class="term-en">Agent</td><td class="term-cn">智能体</td><td>能自己分步骤、调工具、看反馈、把任务做完的 AI 程序。= 模型 + 模型之外的工程系统</td></tr>
+      <tr><td class="term-en">Model</td><td class="term-cn">模型</td><td>大语言模型本身，只负责理解、推理、生成、做判断；它不会自己记事、不会自己管权限、不会自己验结果</td></tr>
+      <tr><td class="term-en">Harness</td><td class="term-cn">模型之外的工程系统</td><td>原意是「马具／挽具」。马有劲，但得套上挽具、装上马车才能拉货——Harness 就是给模型套上的那套东西</td></tr>
+      <tr><td class="term-en">Agentic Application</td><td class="term-cn">智能体化应用</td><td>把智能体放进真实业务里（接数据、接工具、接人），并交付可验证结果的完整应用</td></tr>
+      <tr><td class="term-en">Chat / RAG</td><td class="term-cn">对话 / 检索增强生成</td><td>RAG 就是：先去企业知识库把相关资料查出来，再让模型照着资料回答，减少瞎编</td></tr>
+      <tr><td class="term-en">Workflow</td><td class="term-cn">工作流</td><td>把步骤和分支在开发时就写死的流程图，确定性强、好测试、好审计</td></tr>
+      <tr><td class="term-en">Copilot</td><td class="term-cn">副驾</td><td>AI 出建议，人来操作和负责。任务控制权始终在人手上</td></tr>
+      <tr><td class="term-en">Single-Agent</td><td class="term-cn">单智能体</td><td>一个智能体、一个有边界的任务，自己跑完。这是最基础的智能体形态</td></tr>
+      <tr><td class="term-en">Long-Horizon Agent</td><td class="term-cn">长程智能体</td><td>能跑几小时到几天、能暂停能恢复、换台机器也能接着干的智能体</td></tr>
+      <tr><td class="term-en">Multi-Agent</td><td class="term-cn">多智能体</td><td>多个有不同角色和权限的智能体分工协作。不是「多调几次模型」，而是有角色、有边界的分工</td></tr>
+      <tr><td class="term-en">Coding Agent</td><td class="term-cn">编码智能体</td><td>会读代码库、改文件、跑命令和测试的 AI，是目前唯一规模化赚钱的智能体场景</td></tr>
+      <tr><td class="term-en">Context</td><td class="term-cn">上下文</td><td>这一轮要喂给模型的全部信息：任务目标、历史、检索到的资料、工具返回的结果。注意它≠任务状态</td></tr>
+      <tr><td class="term-en">State</td><td class="term-cn">状态</td><td>任务的事实记录：做到哪一步、待办是什么、哪些已经完成。它必须落到数据库里，不能只活在对话历史里</td></tr>
+      <tr><td class="term-en">Memory</td><td class="term-cn">记忆</td><td>跨会话留下来的经验，比如「这个客户偏好邮件沟通」。和状态的区别：状态是这次任务，记忆是长期积累</td></tr>
+      <tr><td class="term-en">MCP</td><td class="term-cn">模型上下文协议</td><td>Model Context Protocol：让模型用统一方式发现和调用外部工具的一套标准接口。相当于「工具的 USB 接口」</td></tr>
+      <tr><td class="term-en">Runtime / Sandbox</td><td class="term-cn">运行时 / 沙箱</td><td>Runtime 是任务在哪儿跑（进程、调度、恢复）；Sandbox 是把它关起来跑，限制它能碰的文件、网络和数据</td></tr>
+      <tr><td class="term-en">HITL</td><td class="term-cn">人在回路</td><td>Human-in-the-loop：关键动作必须人点确认才能继续。是一种架构设计，不只是弹个审批框</td></tr>
+      <tr><td class="term-en">Trace</td><td class="term-cn">轨迹</td><td>把模型调用、工具调用、状态变化一步步记下来的执行流水，是排查和改进的依据</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">06</span>今日自检 3 问</h2>
+  <ol class="check">
+    <li>你手上的 AI 应用，交付的是「一段内容」还是「一个可验证的结果」？如果是前者，它还在 L1，不用急着往上堆功能。</li>
+    <li>出问题时，你的第一反应是「模型不行」，还是先看上下文、状态、工具、权限、验证这五件事有没有做？——先怀疑 Harness，通常更接近真相。</li>
+    <li>它现在处于 L1–L4 的哪一级？如果要往上走一级，缺的工程能力具体是哪一项？</li>
+  </ol>
+
+  <footer>
+    原文：第 1 章 AI 原生应用的新阶段 · <a href="https://github.com/aliyun/ai-agent-handbook">github.com/aliyun/ai-agent-handbook</a><br>
+    明日预告：第 2 章（上）参考架构 —— 同一套系统为什么要用三个视图看，以及五个责任域分别谁负责。
+  </footer>
+
+</main>
+</body>
+</html>
